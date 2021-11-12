@@ -82,6 +82,7 @@ function renderCard(data) {
       let newComment = document.createElement("li");
       newComment.innerText = formInput.value;
       commentsList.append(newComment);
+      addCommentDelete(newComment);
     });
 
     container.append(commentForm);
@@ -91,3 +92,12 @@ function renderCard(data) {
 };
 
 //BONUS DELIVERABLES
+
+//remove comment when clicked **no persistence**
+  //added event listener to commentForm's event listener
+function addCommentDelete(newComment) {
+  newComment.addEventListener("click", (e) => {
+    e.target.remove();
+    console.log("newComment", e.target);
+  });
+}
