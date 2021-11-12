@@ -6,7 +6,7 @@ const imgCard = document.querySelector(".image-card");
 //render feed
 fetch(url)
 .then(res => res.json())
-.then(data => { // returns obj with id, image, likes, title
+.then(data => { // returns obj with id, image, likes, title, comments (arr of obj with id, imageId, content)
   imgContainer.innerHTML = "";  //clear out placeholder image card
   //create image Card 1
   renderCard(data);
@@ -58,6 +58,11 @@ function renderCard(data) {
   let commentsList = document.createElement("ul");
     commentsList.id = "comments-list";
     commentsList.className = "comments";
+    data.comments.forEach(commentObj => {
+      let comment = document.createElement("li");
+      comment.innerText = commentObj.content;
+      commentsList.append(comment);
+    })
     container.append(commentsList);
   
   //COMMENT FORM & ADD COMMENT LISTENER
