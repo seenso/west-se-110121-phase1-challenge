@@ -3,7 +3,7 @@ const url = "http://localhost:3000/images/1";
 const imgContainer = document.querySelector(".image-container");
 const imgCard = document.querySelector(".image-card");
 
-//fetch image
+//render feed
 fetch(url)
 .then(res => res.json())
 .then(data => { // returns obj with id, image, likes, title
@@ -50,11 +50,10 @@ function renderCard(data) {
         e.preventDefault();
         data.likes++;
         likesSpan.textContent = `${data.likes} Likes`;
-        console.log("DATA LIKES", data.likes)
       });
     container.append(likesSection);
 
-  // //COMMENTS
+  //COMMENTS CONTAINER
   let commentsList = document.createElement("ul");
     commentsList.id = "comments-list";
     commentsList.className = "comments";
@@ -77,18 +76,15 @@ function renderCard(data) {
         formButton.textContent = "Post";
         commentForm.append(formButton);
 
-  //add event listener for posting
-  commentForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let newComment = document.createElement("li");
-    newComment.innerText = formInput.value;
-    commentsList.append(newComment);
+    //add event listener for posting
+    commentForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let newComment = document.createElement("li");
+      newComment.innerText = formInput.value;
+      commentsList.append(newComment);
+    });
 
-    // clear form
-    console.log("FORM INPUT VAL", formInput.value);
-  });
-
-  container.append(commentForm);
+    container.append(commentForm);
 
   //Add to Feed
   imgContainer.append(container);
