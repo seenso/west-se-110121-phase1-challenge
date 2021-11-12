@@ -8,12 +8,12 @@ fetch(url)
 .then(res => res.json())
 .then(data => { // returns obj with id, image, likes, title
   imgContainer.innerHTML = "";  //clear out placeholder image card
-  //create new image Card
+  //create image Card 1
   renderCard(data);
 });
 
 function renderCard(data) {
-  //img container
+  //img card container
   let container = document.createElement("div");
     container.className = "image-card";
 
@@ -46,6 +46,12 @@ function renderCard(data) {
       likeBttn.className = "like-button";
       likeBttn.textContent = "♥";
       likesSection.append(likeBttn);
+      likeBttn.addEventListener("click", e => {
+        e.preventDefault();
+        data.likes++;
+        likesSpan.textContent = `${data.likes} Likes`;
+        console.log("DATA LIKES", data.likes)
+      });
     container.append(likesSection);
 
   // //COMMENTS
@@ -53,7 +59,6 @@ function renderCard(data) {
     commentsList.id = "comments-list";
     commentsList.className = "comments";
     container.append(commentsList);
-    // data["comments"] = []; //create key and store comments here as values
   
   //COMMENT FORM & ADD COMMENT LISTENER
   let commentForm = document.createElement("form");
@@ -79,10 +84,8 @@ function renderCard(data) {
     newComment.innerText = formInput.value;
     commentsList.append(newComment);
 
-    //innerHTML version
-    // commentsList.innerHTML += `<li>${formInput.value}</li>`;
-
-    console.log("COMMENT LIST", commentsList);
+    // clear form
+    console.log("FORM INPUT VAL", formInput.value);
   });
 
   container.append(commentForm);
@@ -90,3 +93,5 @@ function renderCard(data) {
   //Add to Feed
   imgContainer.append(container);
 };
+
+//BONUS DELIVERABLES
