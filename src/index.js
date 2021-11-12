@@ -31,6 +31,7 @@ function renderCard(data) {
     image.id = "card-image";
     image.className = "image";
     image.src = data.image;
+    image.alt = data.title;
     toggleImage(data, title, image);
     container.append(image);
 
@@ -114,10 +115,10 @@ function toggleImage(data, title, image) {
 
   title.addEventListener("click", (e) => {
     e.preventDefault();
-    if (image.src === "") {
+    if (image.src === " ") {
       image.src = data.image;
     } else {
-      image.src = '';
+      image.src = ' ';
     }
   });
 }
