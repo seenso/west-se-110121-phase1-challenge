@@ -110,15 +110,16 @@ function addCommentDelete(newComment) {
 }
 
 //2. Click title of image to toggle image displayed
+// ***** Img disappears but had trouble getting it to come back.
 function toggleImage(data, title, image) {
   console.log("TOGGLEIMG DATA", data);
 
   title.addEventListener("click", (e) => {
     e.preventDefault();
-    if (image.src === " ") {
+    if (image.src === "") {
       image.src = data.image;
     } else {
-      image.src = ' ';
+      image.src = '';
     }
   });
 }
